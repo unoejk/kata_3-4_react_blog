@@ -1,0 +1,37 @@
+
+.postCard{
+
+    &__contentSide{}
+
+    &__userSide{}
+}
+
+.contentSide{
+
+    &__header{}
+
+    &__title{}
+
+    &__likesCount{}
+
+    &__tagsList{}
+
+    &__tag{}
+
+    &__description{}
+}
+
+.userSide{
+
+    &__column{}
+
+    &__userName{}
+
+    &__creationTime{}
+
+    &__userPic{
+        width: 40px;
+        height: 40px;
+        background-color: tomato;
+    }
+}

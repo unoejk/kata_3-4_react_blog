@@ -1,0 +1,61 @@
+
+.header{
+    height: 100%;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: space-between;
+
+    &__sideBlock{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        padding: 0 24px;
+    }
+
+    &__btn{
+        cursor: pointer;
+        border-radius: 5px;
+
+        padding: 8px;
+
+        border: 2px solid transparent;
+        transition: background-color 0.15s ease-out;
+
+        &:hover{
+            background-color: #c8c8c8;
+        }
+
+        &:focus{
+            border-color: #1890FF;
+        }
+
+        &--bold{
+            font-weight: bold;
+        }
+
+        &--blackBorder{
+            border-color: inherit;
+        }
+
+        &--greenBorder{
+            color: #52C41A;
+            border: 2px solid;
+        }
+    }
+
+    &__userBox{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__userName{}
+
+    &__userPic{
+        width: 20px;
+        height: 20px;
+        background-color: tomato;
+    }
+}

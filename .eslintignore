@@ -1,0 +1,7 @@
+node_modules/
+build/
+.idea/
+.vercel/
+yarn.lock
+yarn-error.log
+*

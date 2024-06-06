@@ -1,0 +1,71 @@
+
+// ---------------- resetPlus
+
+html{
+    box-sizing: border-box;
+}
+*,*:before,*:after{
+    box-sizing: inherit;
+}
+
+body{}
+
+button{
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+    border: 0 none transparent;
+    outline: 0 none transparent;
+    width: fit-content;
+    height: fit-content;
+}
+input,textarea{
+    padding: 0;
+    border: 0 none transparent;
+    outline: 0 none transparent;
+}
+textarea{
+    resize: none;
+}
+a,a:hover,a:active{
+    text-decoration: none;
+    color: inherit;
+    outline: 0 none transparent;
+}
+
+// ---------------- quickClasses
+
+.testDiv{
+    height: 200px;
+    width: 200px;
+    background-color: tomato;
+}
+
+.disabled{
+    display: none;
+}
+
+// ---------------- antdFix
+
+.ant-pagination{
+
+    &>.ant-pagination-item{
+        transition: all .15s ease-out;
+    }
+
+    &>.ant-pagination-item-active{
+        border-color: #1890FF;
+        background-color: #1890FF;
+
+        &>a{
+            color: #ffffff;
+            transition: all .15s ease-out;
+
+            &:hover{
+                color: #000000BF;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+
+.postsList{
+    flex-grow: 1;
+
+    max-width: 940px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    gap: 24px;
+
+    &__list{
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__item{}
+}
