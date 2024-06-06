@@ -15,7 +15,7 @@ const Header=(props)=>{
                 <button className={`${style.header__btn} ${style['header__btn--greenBorder']}`}>Sign Up</button>
                 <button className={`${style.header__btn} ${style['header__btn--greenBorder']}`}>Create article</button>
                 <button className={`${style.header__btn} ${style.header__userBox}`}>
-                    <button className={style.header__userName}>John Doe</button>
+                    <span className={style.header__userName}>John Doe</span>
                     <div className={style.header__userPic}></div>
                 </button>
                 <button className={`${style.header__btn} ${style['header__btn--blackBorder']}`}>Log Out</button>

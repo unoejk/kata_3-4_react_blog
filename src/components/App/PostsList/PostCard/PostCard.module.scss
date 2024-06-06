@@ -1,9 +1,15 @@
 
 .postCard{
+    display: flex;
+    justify-content: space-between;
 
-    &__contentSide{}
+    &__contentSide{
+        flex-grow: 1;
+    }
 
-    &__userSide{}
+    &__userSide{
+        width: 20%;
+    }
 }
 
 .contentSide{
