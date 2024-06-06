@@ -1,7 +1,6 @@
 //@import '../../styles/standart';
 @import 'src/styles/standart';
 
-
 body{
     font-family: 'TT Lakes', 'Arial', sans-serif;
     font-size: 12px;
@@ -10,14 +9,14 @@ body{
 
 .app{
     min-height: 100vh;
-    background-color: #EBEEF3;
+    background-color: $greySoft;
 
     display: flex;
     flex-direction: column;
 
     &__header{
         height: 80px;
-        background-color: #FFFFFF;
+        background-color: $white;
     }
 
     &__main{

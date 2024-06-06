@@ -1,3 +1,4 @@
+@import 'src/styles/standart';
 
 .header{
     height: 100%;
@@ -21,14 +22,14 @@
         padding: 8px;
 
         border: 2px solid transparent;
-        transition: background-color 0.15s ease-out;
+        transition: $transitionQuick;
 
         &:hover{
-            background-color: #c8c8c8;
+            background-color: $greyMiddle;
         }
 
         &:focus{
-            border-color: #1890FF;
+            border-color: $blue;
         }
 
         &--bold{
@@ -40,7 +41,7 @@
         }
 
         &--greenBorder{
-            color: #52C41A;
+            color: $green;
             border: 2px solid;
         }
     }

@@ -1,8 +1,23 @@
 
-// ---------------- main
+// ---- prom
 
 $black: #000000BF;
+$white:#FFFFFF;
 
-// ---------------- textOnly
+// ---- grey
 
-// ---------------- backgroundOnly
+$greySoft: #EBEEF3;
+$greyMiddle: #c8c8c8;
+
+// ---- blue
+
+$blue: #1890FF;
+
+// ---- green
+
+$green: #52C41A;
+
+// ---- transition
+
+$transitionQuick: all .15s ease-out;
+$transitionMiddle: all .3s ease-out;
