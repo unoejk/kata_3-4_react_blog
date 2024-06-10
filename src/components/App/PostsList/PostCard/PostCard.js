@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import classNames from 'classnames'
 import style from './PostCard.module.scss'
 
 const PostCard=(props)=>{
@@ -8,7 +9,13 @@ const PostCard=(props)=>{
             <div className={`${style.postCard__contentSide} ${style.contentSide}`}>
                 <div className={style.contentSide__header}>
                     <h2 className={style.contentSide__title}>{props.title}</h2>
-                    <span className={style.contentSide__likesCount}>{props.likesCount}></span>
+                    <button
+                        className={classNames(
+                            style.contentSide__likesCount,
+                            {[style['contentSide__likesCount--isLiked']]:props.isLiked}
+                        )}
+                    >{props.likesCount}</button>
+                    {/*<span className={style.contentSide__likesCount}>{props.likesCount}</span>*/}
                 </div>
                 <ul className={style.contentSide__tagsList}>
                     {

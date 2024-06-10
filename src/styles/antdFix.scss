@@ -1,21 +1,15 @@
-@import 'src/styles/standart';
 
 .ant-pagination{
-
-    &>.ant-pagination-item{
-        transition: $transitionQuick;
-    }
-
     &>.ant-pagination-item-active{
-        border-color: $blue;
-        background-color: $blue;
+        border-color: #1890FF;
+        background-color: #1890FF;
 
         &>a{
-            color: $white;
+            color: #FFFFFF;
             transition: all .15s ease-out;
 
             &:hover{
-                color: $black;
+                color: #000000BF;
             }
         }
     }

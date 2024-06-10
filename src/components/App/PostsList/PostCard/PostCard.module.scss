@@ -1,8 +1,14 @@
 @import 'src/styles/standart';
 
 .postCard{
+    background-color: $white;
+    box-shadow: 0 4px 12px 0 #00000026;
+
     display: flex;
     justify-content: space-between;
+    gap: 8px;
+    padding: 16px;
+
 
     &__contentSide{
         flex-grow: 1;
@@ -10,31 +16,80 @@
 
     &__userSide{
         width: 20%;
+        flex-shrink: 0;
     }
 }
 
 .contentSide{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 
-    &__header{}
+    &__header{
+        display: flex;
+        gap: 8px;
+    }
 
-    &__title{}
+    &__title{
+        font-size: 18px;
+        color: $blue;
+    }
 
-    &__likesCount{}
+    &__likesCount{
+        height: 16px;
 
-    &__tagsList{}
+        display: flex;
+        align-items: center;
+        gap: 4px;
 
-    &__tag{}
+        &:before{
+            content: url('../../../../assets/svg/likeInactive.svg');
+            position: relative;
+            top: 2px;
+        }
+        &--isLiked:before{
+            content: url('../../../../assets/svg/likeActive.svg');
+        }
+    }
+
+    &__tagsList{
+        display: flex;
+        gap: 8px;
+    }
+
+    &__tag{
+        border: 1px solid;
+        border-radius: 2px;
+
+        padding: 0 4px;
+
+        &:nth-child(n+2){
+            color: $greyHard;
+        }
+    }
 
     &__description{}
 }
 
 .userSide{
+    display: flex;
+    justify-content: end;
+    gap: 8px;
 
-    &__column{}
+    &__column{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+    }
 
-    &__userName{}
+    &__userName{
+        font-size: 18px;
+    }
 
-    &__creationTime{}
+    &__creationTime{
+        color: $greyHard;
+    }
 
     &__userPic{
         width: 40px;
