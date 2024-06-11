@@ -9,7 +9,7 @@ const composeEnhancers=
         : compose
 
 const store=configureStore({
-    reducer:combineReducers({counter,articlesSlice}),
+    reducer:combineReducers({articlesSlice}),
     middleware:(gdm)=>gdm().concat(thunk),
     devTools: composeEnhancers,
 })

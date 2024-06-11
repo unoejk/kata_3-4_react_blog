@@ -22,9 +22,14 @@ body{
 
     &__main{
         flex-grow: 1;
+        align-self: center;
+
+        width: 100%;
+        max-width: 940px;
 
         display: flex;
         justify-content: center;
+        padding: 24px;
         //&>*{
         //    flex-grow: 1;
         //}

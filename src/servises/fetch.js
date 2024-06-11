@@ -1,11 +1,23 @@
+import {createAsyncThunk} from '@reduxjs/toolkit'
+
 const home = 'https://blog.kata.academy/api/'
 
-const getArticles=async ()=>{
-    // const i=await fetch(home+'articles')
-    //     .then((res) => res.json())
-    // console.log(i)
-    return fetch(home+'articles')
-        .then((res) => res.json())
+export const getArticles=async (perPage,offset)=>{
+    return fetch(home+'articles?limit='+perPage+'&offset='+offset)
+        .then((res)=>{
+            if(res.ok)
+                return res.json()
+            else
+                throw new Error('Server Error '+res.status)
+        })
 }
 
-export {getArticles}
+export const getArticle=async (slug)=>{
+    return fetch(home+'articles/'+slug)
+        .then((res)=>{
+            if(res.ok)
+                return res.json()
+            else
+                throw new Error('Server Error '+res.status)
+        })
+}

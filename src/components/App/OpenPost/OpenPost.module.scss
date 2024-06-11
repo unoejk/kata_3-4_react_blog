@@ -1,6 +1,10 @@
 @import 'src/styles/standart';
 
-.postCard{
+.spin{
+    margin: auto;
+}
+
+.openPost{
     flex-grow: 1;
 
     width: 100%;
@@ -9,16 +13,34 @@
     box-shadow: 0 4px 12px 0 #00000026;
 
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    //justify-content: space-between;
     gap: 8px;
     padding: 16px;
 
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        //padding: 16px;
+    }
 
-    &__contentSide{
+    &__body{
+        & p{
+            padding: 4px 0;
+        }
+        & h3{
+            padding: 4px 0;
+            font-size: 150%;
+            line-height: 150%;
+        }
+    }
+
+    &__headerContentSide{
         flex-grow: 1;
     }
 
-    &__userSide{
+    &__headerUserSide{
         width: 20%;
         flex-shrink: 0;
     }
@@ -47,12 +69,12 @@
         gap: 4px;
 
         &:before{
-            content: url('../../../../assets/svg/likeInactive.svg');
+            content: url('../../../assets/svg/likeInactive.svg');
             position: relative;
             top: 2px;
         }
         &--isLiked:before{
-            content: url('../../../../assets/svg/likeActive.svg');
+            content: url('../../../assets/svg/likeActive.svg');
         }
     }
 
@@ -62,17 +84,16 @@
     }
 
     &__tag{
+        color: $greyHard;
         border: 1px solid;
         border-radius: 2px;
 
         padding: 0 4px;
-
-        &:nth-child(n+2){
-            color: $greyHard;
-        }
     }
 
-    &__description{}
+    &__description{
+        color: $greyHard;
+    }
 }
 
 .userSide{

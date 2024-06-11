@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {Link} from 'react-router-dom'
 import style from './Header.module.scss'
 
 const Header=(props)=>{
@@ -6,9 +7,12 @@ const Header=(props)=>{
     return (
         <nav className={style.header}>
             <div className={style.header__sideBlock}>
-                <button className={`${style.header__btn} ${style['header__btn--bold']}`}>
+                <Link
+                    className={`${style.header__btn} ${style['header__btn--bold']}`}
+                    to={'/'}
+                >
                     <h1>Realworld Blog</h1>
-                </button>
+                </Link>
             </div>
             <div className={style.header__sideBlock}>
                 <button className={style.header__btn}>Sign In</button>
