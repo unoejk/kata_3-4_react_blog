@@ -1,17 +1,24 @@
-import React,{useState} from 'react'
+import React,{useEffect,useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {Pagination,Spin} from 'antd'
+import classNames from 'classnames'
 import style from './PostsList.module.scss'
 import PostCard from './PostCard/PostCard'
-import {changePage} from '../../../store/slices/articlesSlice'
-import classNames from 'classnames'
+import {setPage,updateArticles} from '../../../store/slices/articlesSlice'
+import {signUp,signIn,getUser} from '../../../servises/fetch'
 
 const PostsList=(props)=>{
-    // ---- store
     const {isArticlesLoading,articles,articlesCount,actualPage,perPage}=useSelector(state=>state.articlesSlice)
+    const {token}=useSelector(state=>state.usersSlice)
     const dispatch=useDispatch()
 
-    // const [takeMeName,setTakeMeName]=useState(undefined)
+    useEffect(()=>{
+        ;(async()=>{
+            await dispatch(updateArticles(token,(actualPage-1)*perPage))
+            // console.log(actualPage)
+        })()
+    },[actualPage])
+
     return (
         <div className={style.postsList}>
             {/*<ul className={style.postsList__list}>*/}
@@ -35,7 +42,7 @@ const PostsList=(props)=>{
                 current={actualPage}
                 pageSize={perPage}
                 total={articlesCount}
-                onChange={(e)=>dispatch(changePage(e))}
+                onChange={(e)=>dispatch(setPage(e))}
                 showSizeChanger={false}
             />
         </div>

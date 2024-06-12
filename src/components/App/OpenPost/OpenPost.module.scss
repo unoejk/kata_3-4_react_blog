@@ -34,6 +34,7 @@
             font-size: 150%;
             line-height: 150%;
         }
+        overflow-wrap: anywhere;
     }
 
     &__headerContentSide{
@@ -59,6 +60,7 @@
     &__title{
         font-size: 18px;
         color: $blue;
+        overflow-wrap: anywhere;
     }
 
     &__likesCount{
@@ -87,12 +89,16 @@
         color: $greyHard;
         border: 1px solid;
         border-radius: 2px;
+        overflow: hidden;
+        max-width: 300px;
+        white-space: nowrap;
 
         padding: 0 4px;
     }
 
     &__description{
         color: $greyHard;
+        overflow-wrap: anywhere;
     }
 }
 
@@ -111,6 +117,7 @@
 
     &__userName{
         font-size: 18px;
+        overflow-wrap: anywhere;
     }
 
     &__creationTime{

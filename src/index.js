@@ -7,10 +7,10 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import store from './store/store'
 // styles
-import './styles/reset.css'
-import './styles/resetPlus.scss'
-import './styles/quickClasses.scss'
-import './styles/antdFix.scss'
+import './styles/forIndex/reset.css'
+import './styles/forIndex/resetPlus.scss'
+import './styles/forIndex/quickClasses.scss'
+import './styles/forIndex/antdFix.scss'
 // components
 import App from './components/App/App'
 

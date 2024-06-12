@@ -1,7 +1,9 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
+import {useSelector} from 'react-redux'
+
 import {getArticles} from '../../servises/fetch'
 
-const home='https://blog.kata.academy/api/'
+// const {token}=useSelector(state=>state.usersSlice)
 
 const initialState={
     isArticlesLoading:true,
@@ -14,27 +16,16 @@ const initialState={
 
 export const updateArticles=createAsyncThunk(
     'articles/updateArticles',
-    async(offset=0)=>{
-        // console.log('updateArticles')
-        // return fetch(home+'articles?limit='+initialState.perPage+'&offset='+offset)
-        //     .then((res)=>res.json())
-        return await getArticles(initialState.perPage,offset)
+    async(token,offset=0)=>{
+        return await getArticles(token,initialState.perPage,offset)
     },
 )
-// export const updateArticle=createAsyncThunk(
-//     'articles/getArticle',
-//     async(slug)=>{
-//         // console.log('updateArticles')
-//         return fetch(home+'articles/'+slug)
-//             .then((res)=>res.json())
-//     },
-// )
 
 const articlesSlice=createSlice({
     name:'articlesSlice',
     initialState,
     reducers:{
-        changePage:(state,action)=>{
+        setPage:(state,action)=>{
             state.actualPage=action.payload
         },
     },
@@ -56,5 +47,5 @@ const articlesSlice=createSlice({
     },
 })
 
-export const {changePage}=articlesSlice.actions
+export const {setPage}=articlesSlice.actions
 export default articlesSlice.reducer

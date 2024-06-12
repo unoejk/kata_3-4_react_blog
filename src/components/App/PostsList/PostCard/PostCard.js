@@ -50,15 +50,4 @@ const PostCard=(props)=>{
     )
 }
 
-// takeMeName.defaultProps={
-//     takeMeName:'',
-// }
-// takeMeName.propTypes={
-//     takeMeName:(props, propName, componentName)=>{
-//         if (typeof props[propName]==='string')
-//             return null
-//         return new TypeError(`${componentName}: ${propName} must be string`)
-//     },
-// }
-
 export default PostCard
