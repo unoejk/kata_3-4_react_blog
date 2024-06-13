@@ -4,4 +4,4 @@ build/
 .vercel/
 yarn.lock
 yarn-error.log
-*
+#*

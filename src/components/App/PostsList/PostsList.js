@@ -1,50 +1,40 @@
-import React,{useEffect} from 'react'
-import {useDispatch,useSelector} from 'react-redux'
-import {Pagination,Spin} from 'antd'
-import {setPage,updateArticles} from '../../../store/slices/articlesSlice'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Pagination, Spin } from 'antd'
 import classNames from 'classnames'
+import { setPage, updateArticles } from '../../../store/slices/articlesSlice'
 import style from './PostsList.module.scss'
 import PostCard from './PostCard/PostCard'
 
-const PostsList=()=>{
-    const {isArticlesLoading,isArticlesError,articles,articlesCount,actualPage,perPage}=useSelector(state=>state.articlesSlice)
-    const {token,flag}=useSelector(state=>state.usersSlice)
-    const dispatch=useDispatch()
+const PostsList = () => {
+	const { isArticlesLoading, isArticlesError, articles, articlesCount, actualPage, perPage } = useSelector(
+		(state) => state.articlesSlice
+	)
+	const { token } = useSelector((state) => state.usersSlice)
+	const dispatch = useDispatch()
 
-    useEffect(()=>{
-        ;(async()=>{
-			const myProps={
-				token:token,
-				offset:(actualPage-1)*perPage,
+	useEffect(() => {
+		;(async () => {
+			const myProps = {
+				token: token,
+				offset: (actualPage - 1) * perPage,
 			}
-            await dispatch(updateArticles(myProps))
-        })()
-    },[actualPage,token])
+			await dispatch(updateArticles(myProps))
+		})()
+	}, [actualPage, token])
 
 	return (
 		<div className={style.postsList}>
+			<Spin className={classNames(style.spin, { disabled: !isArticlesLoading })} size="large" />
 
-			<Spin className={classNames(
-				style.spin,
-				{ 'disabled': !isArticlesLoading }
-			)} size="large" />
+			<p className={classNames(style.errorMessage, { disabled: !isArticlesError })}>{isArticlesError}</p>
 
-			<p className={classNames(
-				style.errorMessage,
-				{ 'disabled': !isArticlesError }
-			)}>{isArticlesError}</p>
-
-			<ul className={classNames(
-				style.postsList__list,
-				{ 'disabled': isArticlesLoading || isArticlesError }
-			)}>
-				{
-					articles.map(post =>
-						<li className={style.postsList__item} key={post.slug}>
-							<PostCard {...post} />
-						</li>,
-					)
-				}
+			<ul className={classNames(style.postsList__list, { disabled: isArticlesLoading || isArticlesError })}>
+				{articles.map((post) => (
+					<li className={style.postsList__item} key={post.slug}>
+						<PostCard {...post} />
+					</li>
+				))}
 			</ul>
 
 			<Pagination
