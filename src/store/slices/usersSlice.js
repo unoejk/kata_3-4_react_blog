@@ -23,12 +23,6 @@ const usersSlice=createSlice({
         setUser:(state,action)=>{
             state.user=action.payload
         },
-        setUsername:(state,action)=>{
-            state.username=action.payload
-        },
-        setEmail:(state,action)=>{
-            state.email=action.payload
-        },
     },
 })
 

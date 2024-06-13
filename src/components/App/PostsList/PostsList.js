@@ -9,15 +9,25 @@ import {signUp,signIn,getUser} from '../../../servises/fetch'
 
 const PostsList=(props)=>{
     const {isArticlesLoading,articles,articlesCount,actualPage,perPage}=useSelector(state=>state.articlesSlice)
-    const {token}=useSelector(state=>state.usersSlice)
+    const {token,flag}=useSelector(state=>state.usersSlice)
     const dispatch=useDispatch()
+
+	// console.log('PostsList')
 
     useEffect(()=>{
         ;(async()=>{
-            await dispatch(updateArticles(token,(actualPage-1)*perPage))
-            // console.log(actualPage)
+			const myProps={
+				token:token,
+				offset:(actualPage-1)*perPage,
+			}
+            await dispatch(updateArticles(myProps))
+			// console.log(articles[0]?.favorited)
+			// console.log('PostsList useEffect')
         })()
-    },[actualPage])
+    },[actualPage,token])
+
+	// console.log(articles[0]?.favorited)
+	// console.log('PostsList')
 
     return (
         <div className={style.postsList}>

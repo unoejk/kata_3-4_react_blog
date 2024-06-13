@@ -2,17 +2,22 @@ import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {setToken} from '../../../store/slices/usersSlice'
+import {updateArticles} from '../../../store/slices/articlesSlice'
 import classNames from 'classnames'
 import style from './Header.module.scss'
 
 const Header=(props)=>{
     const dispatch=useDispatch()
-    const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
+    const {isUsersLoading,actualPage,token,user}=useSelector((state)=>state.usersSlice)
 
-    const logOut=()=>{
+    const logOut=async ()=>{
         dispatch(setToken(''))
-
         localStorage.clear()
+		// await dispatch(updateArticles({
+		// 	token:null,
+		// 	offset:(actualPage-1)*5,
+		// }))
+		// console.log('Header logOut')
     }
 
     return (
@@ -56,10 +61,10 @@ const Header=(props)=>{
                     )}
                     to={'/profile/'}
                 >
-                    <span className={style.header__userName}>{user.username}</span>
+                    <span className={style.header__userName}>{user?.username}</span>
                     <img
                         className={style.header__userPic}
-                        src={user.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'}
+                        src={user?.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'}
                         alt={'userPic'}
                     />
                 </Link>

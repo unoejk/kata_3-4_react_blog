@@ -16,10 +16,15 @@ const initialState={
 
 export const updateArticles=createAsyncThunk(
     'articles/updateArticles',
-    async(token,offset=0)=>{
+    async(props)=>{
+		// console.log('updateArticles')
+		const token=props.token || JSON.parse(localStorage.getItem('token'))
+		const offset=props.offset?props.offset:0
         return await getArticles(token,initialState.perPage,offset)
     },
 )
+
+// export const changeFag=()=>{}
 
 const articlesSlice=createSlice({
     name:'articlesSlice',
@@ -28,6 +33,14 @@ const articlesSlice=createSlice({
         setPage:(state,action)=>{
             state.actualPage=action.payload
         },
+		replaceArticle:(state,action)=>{
+			const index=state.articles.findIndex(val=>val.slug===action.payload.slug)
+			state.articles=[
+				...state.articles.slice(0,index),
+				action.payload,
+				...state.articles.slice(index+1,state.articles.length)
+			]
+		},
     },
     extraReducers:(builder)=>{
         // ---- updateArticles
@@ -47,5 +60,5 @@ const articlesSlice=createSlice({
     },
 })
 
-export const {setPage}=articlesSlice.actions
+export const {setPage,replaceArticle}=articlesSlice.actions
 export default articlesSlice.reducer

@@ -45,7 +45,7 @@ const App=()=>{
 
     useEffect(()=>{
         ;(async()=>{
-            console.log('App useEffect')
+            // console.log('App useEffect')
             dispatch(setUsersLoading(true))
             await tryAutoLogin()
             dispatch(setUsersLoading(false))

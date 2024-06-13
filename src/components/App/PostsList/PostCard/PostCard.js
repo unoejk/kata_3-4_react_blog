@@ -2,12 +2,18 @@ import React,{useState,useEffect} from 'react'
 import {BrowserRouter as Router,Route,Link,withRouter,Redirect,Switch,useHistory,useLocation} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {format} from 'date-fns'
+import { replaceArticle, updateArticles } from '../../../../store/slices/articlesSlice'
+import {setLike} from '../../../../servises/fetch'
 import classNames from 'classnames'
 import style from './PostCard.module.scss'
 
 const PostCard=(props)=>{
-    const click=()=>{
-        console.log('click')
+	const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
+	const dispatch=useDispatch()
+
+    const handleSetLike=async ()=>{
+		const newProps=await setLike(token,props.slug,props.favorited)
+		dispatch(replaceArticle(newProps.article))
     }
 
     return (
@@ -25,7 +31,8 @@ const PostCard=(props)=>{
                             style.contentSide__likesCount,
                             {[style['contentSide__likesCount--isLiked']]:props.favorited},
                         )}
-                        onClick={click}
+						disabled={!token}
+                        onClick={handleSetLike}
                     >{props.favoritesCount}</button>
                 </div>
                 <ul className={style.contentSide__tagsList}>

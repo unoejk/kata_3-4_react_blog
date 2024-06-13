@@ -16,8 +16,10 @@ export const getArticles=async(token,perPage,offset)=>{
         })
 }
 
-export const getArticle=async(slug)=>{
-    return fetch(home+'articles/'+slug)
+export const getArticle=async(slug,token)=>{
+    return fetch(home+'articles/'+slug,{
+		headers:token?{Authorization:'Token ' + token}:undefined
+	})
         .then(res=>{
             if(res.ok)
                 return res.json()
@@ -36,7 +38,7 @@ const mutateRes=async (res,userData)=>{
             username:resJson.user.username,
             email:resJson.user.email,
             password:userData.user.password,
-            image:userData.user.image,
+			image:resJson.user.image,
         }
         localStorage.setItem('token', JSON.stringify(newToken))
         localStorage.setItem('user', JSON.stringify(newUser))
@@ -50,7 +52,9 @@ const mutateRes=async (res,userData)=>{
 export const signUp=async(userData)=>{
     return fetch(home+'users/',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{
+			'Content-Type':'application/json'
+		},
         body:JSON.stringify(userData),
     })
         .then(res=>mutateRes(res,userData))
@@ -59,26 +63,34 @@ export const signUp=async(userData)=>{
 export const signIn=async(userData)=>{
     return fetch(home+'users/login/',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{
+			'Content-Type':'application/json'
+		},
         body:JSON.stringify(userData),
     })
         .then(res=>mutateRes(res,userData))
 }
 
 export const updateUser=async(token,userData)=>{
-    if(token){
-        console.log(token)
-        console.log(userData)
-        return fetch(home+'user/',{
-            method:'PUT',
-            headers:{
-                'Content-Type': 'application/json',
-                Authorization:'Token '+token,
-            },
-            body:JSON.stringify(userData),
-        })
-            .then(res=>mutateRes(res,userData))
-    }
+	return fetch(home+'user/',{
+		method:'PUT',
+		headers:{
+			'Content-Type': 'application/json',
+			Authorization:'Token '+token,
+		},
+		body:JSON.stringify(userData),
+	})
+		.then(res=>mutateRes(res,userData))
+}
+
+export const setLike=async(token,slug,itWasLiked)=>{
+	return fetch(home+'articles/'+slug+'/favorite/',{
+		method:itWasLiked?'DELETE':'POST',
+		headers:{
+			Authorization:'Token '+token,
+		},
+	})
+		.then(res=>res.json())
 }
 
 // export const getUser=async(token)=>{

@@ -4,13 +4,15 @@ import {useDispatch,useSelector} from 'react-redux'
 import {format} from 'date-fns'
 import ReactMarkdown from 'react-markdown'
 import {Spin} from 'antd'
+import { replaceArticle } from '../../../store/slices/articlesSlice'
+import { getArticle, setLike } from '../../../servises/fetch'
 import classNames from 'classnames'
 import style from './OpenPost.module.scss'
-import {getArticle} from '../../../servises/fetch'
 
 const OpenPost=(props)=>{
     // ---- store
     const {isArticlesLoading,articles,articlesCount,actualPage,perPage}=useSelector(state=>state.articlesSlice)
+	const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
     const dispatch=useDispatch()
 
     const [isLoading,setLoading]=useState(true)
@@ -19,20 +21,29 @@ const OpenPost=(props)=>{
     const location=useLocation()
     useEffect(()=>{
         ;(async()=>{
-            // setLoading(true)
+            setLoading(true)
+
+			let quickToken=token
+			if (!quickToken) try {
+				console.log('hi')
+				quickToken=JSON.parse(localStorage.getItem('token'))
+			}catch{}
+
             const slug=location.pathname
                 .split('/')
                 .reverse()
                 .find(val=>val!=='')
-            // console.log(await getArticle(slug))
-            const res=await getArticle(slug)
+            const res=await getArticle(slug,quickToken)
             setPost(res.article)
-            setLoading(false)
-
+            await setLoading(false)
         })()
     },[])
 
-    const click=()=>{}
+	const handleSetLike=async ()=>{
+		const newProps=await setLike(token,post.slug,post.favorited)
+		// console.log(newProps)
+		setPost(newProps.article)
+	}
 
     if(isLoading){
         return <Spin className={style.spin} size="large"/>
@@ -53,7 +64,8 @@ const OpenPost=(props)=>{
                                     style.contentSide__likesCount,
                                     {[style['contentSide__likesCount--isLiked']]:post.favorited},
                                 )}
-                                onClick={click}
+								disabled={!token}
+                                onClick={handleSetLike}
                             >{post.favoritesCount}</button>
                         </div>
                         <ul className={style.contentSide__tagsList}>
