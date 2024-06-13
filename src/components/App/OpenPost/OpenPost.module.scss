@@ -36,12 +36,12 @@
         & p{
             padding: 4px 0;
         }
-        & h4{
+        & h3{
             padding: 4px 0;
             font-size: 125%;
             line-height: 125%;
         }
-        & h3{
+        & h2{
             padding: 4px 0;
             font-size: 150%;
             line-height: 150%;
@@ -51,12 +51,15 @@
             font-size: 175%;
             line-height: 175%;
         }
-        & h2{
+        & h1{
             padding: 4px 0;
             font-size: 200%;
             line-height: 200%;
         }
         overflow-wrap: anywhere;
+        & strong{
+            font-weight: bold;
+        }
     }
 
     &__headerContentSide{
