@@ -62,7 +62,7 @@ const OpenPost = () => {
 		return <p className={style.errorMessage}>{isError}</p>
 	} else {
 		return (
-			<div className={style.openPost}>
+			<article className={style.openPost}>
 				<div className={style.openPost__header}>
 					<div className={`${style.openPost__headerContentSide} ${style.contentSide}`}>
 						<div className={style.contentSide__header}>
@@ -134,7 +134,7 @@ const OpenPost = () => {
 				<div className={style.openPost__body}>
 					<ReactMarkdown>{post.body}</ReactMarkdown>
 				</div>
-			</div>
+			</article>
 		)
 	}
 }

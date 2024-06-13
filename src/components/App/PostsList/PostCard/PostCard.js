@@ -17,7 +17,7 @@ const PostCard = (props) => {
 	}
 
 	return (
-		<div className={style.postCard}>
+		<article className={style.postCard}>
 			<div className={`${style.postCard__contentSide} ${style.contentSide}`}>
 				<div className={style.contentSide__header}>
 					<Link className={style.contentSide__title} to={'/articles/' + props.slug + '/'}>
@@ -51,7 +51,7 @@ const PostCard = (props) => {
 					<img className={style.userSide__userPic} src={props.author.image} alt={'userPic'} />
 				</div>
 			</div>
-		</div>
+		</article>
 	)
 }
 
