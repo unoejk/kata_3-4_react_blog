@@ -97,7 +97,13 @@ const OpenPost = () => {
 								</span>
 							</div>
 							<div className={style.userSide__column}>
-								<img className={style.userSide__userPic} src={post.author.image} alt={'userPic'} />
+								<img
+									className={style.userSide__userPic}
+									src={
+										post.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'
+									}
+									alt={'userPic'}
+								/>
 							</div>
 						</div>
 						<div

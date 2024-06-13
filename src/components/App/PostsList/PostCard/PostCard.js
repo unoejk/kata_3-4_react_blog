@@ -48,7 +48,11 @@ const PostCard = (props) => {
 					<span className={style.userSide__creationTime}>{format(props.createdAt, 'MMM dd, yyyy')}</span>
 				</div>
 				<div className={style.userSide__column}>
-					<img className={style.userSide__userPic} src={props.author.image} alt={'userPic'} />
+					<img
+						className={style.userSide__userPic}
+						src={props.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'}
+						alt={'userPic'}
+					/>
 				</div>
 			</div>
 		</article>
