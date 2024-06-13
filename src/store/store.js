@@ -1,6 +1,5 @@
 import {combineReducers,compose,configureStore} from '@reduxjs/toolkit'
 import {thunk} from 'redux-thunk'
-import counter from './slices/counterSlice'
 import articlesSlice from './slices/articlesSlice'
 import usersSlice from './slices/usersSlice'
 

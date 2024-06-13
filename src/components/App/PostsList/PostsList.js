@@ -1,13 +1,12 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {Pagination,Spin} from 'antd'
 import {setPage,updateArticles} from '../../../store/slices/articlesSlice'
-import {signUp,signIn,getUser} from '../../../servises/fetch'
 import classNames from 'classnames'
 import style from './PostsList.module.scss'
 import PostCard from './PostCard/PostCard'
 
-const PostsList=(props)=>{
+const PostsList=()=>{
     const {isArticlesLoading,isArticlesError,articles,articlesCount,actualPage,perPage}=useSelector(state=>state.articlesSlice)
     const {token,flag}=useSelector(state=>state.usersSlice)
     const dispatch=useDispatch()

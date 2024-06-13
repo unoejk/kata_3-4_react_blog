@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {Spin} from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
-import { addArticle, getArticle, signUp, updateArticle } from '../../../servises/fetch'
+import { useSelector } from 'react-redux'
+import { addArticle, getArticle, updateArticle } from '../../../servises/fetch'
 import classNames from 'classnames'
 import style from './EditArticle.module.scss'
-import { setToken, setUser } from '../../../store/slices/usersSlice'
 
-const EditArticle=(props)=>{
-	const dispatch=useDispatch()
-	const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
+const EditArticle=()=>{
+	const {token}=useSelector((state)=>state.usersSlice)
 
 	const history=useHistory()
 	const location=useLocation()

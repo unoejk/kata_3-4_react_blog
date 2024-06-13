@@ -1,14 +1,14 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 import {Link,useHistory} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {Spin} from 'antd'
 import {useDispatch} from 'react-redux'
 import {setToken,setUser} from '../../../store/slices/usersSlice'
-import {signUp,signIn} from '../../../servises/fetch'
+import {signUp} from '../../../servises/fetch'
 import classNames from 'classnames'
 import style from './UserForm.module.scss'
 
-const SignUp=(props)=>{
+const SignUp=()=>{
     const dispatch=useDispatch()
     const history=useHistory()
     const [isLoading,setIsLoading]=useState(false)

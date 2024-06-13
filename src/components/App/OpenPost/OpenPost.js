@@ -1,18 +1,16 @@
 import React,{useState,useEffect} from 'react'
-import {BrowserRouter as Router,Route,Link,withRouter,Redirect,Switch,useHistory,useLocation} from 'react-router-dom'
+import {Link,useHistory,useLocation} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {format} from 'date-fns'
 import ReactMarkdown from 'react-markdown'
 import {Spin,Popconfirm} from 'antd'
-import { replaceArticle } from '../../../store/slices/articlesSlice'
 import { deleteArticle, getArticle, setLike } from '../../../servises/fetch'
 import classNames from 'classnames'
 import style from './OpenPost.module.scss'
 
-const OpenPost=(props)=>{
+const OpenPost=()=>{
     // ---- store
-	const dispatch=useDispatch()
-	const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
+	const {token,user}=useSelector((state)=>state.usersSlice)
 
 	const history=useHistory()
 	const location=useLocation()

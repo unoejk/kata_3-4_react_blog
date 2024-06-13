@@ -1,13 +1,13 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {setToken} from '../../../store/slices/usersSlice'
 import classNames from 'classnames'
 import style from './Header.module.scss'
 
-const Header=(props)=>{
+const Header=()=>{
     const dispatch=useDispatch()
-    const {isUsersLoading,actualPage,token,user}=useSelector((state)=>state.usersSlice)
+    const {token,user}=useSelector((state)=>state.usersSlice)
 
     const logOut=async ()=>{
         dispatch(setToken(''))

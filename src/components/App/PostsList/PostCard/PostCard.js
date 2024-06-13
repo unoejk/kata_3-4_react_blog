@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react'
-import {BrowserRouter as Router,Route,Link,withRouter,Redirect,Switch,useHistory,useLocation} from 'react-router-dom'
+import React from 'react'
+import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {format} from 'date-fns'
 import { replaceArticle } from '../../../../store/slices/articlesSlice'
@@ -8,7 +8,7 @@ import classNames from 'classnames'
 import style from './PostCard.module.scss'
 
 const PostCard=(props)=>{
-	const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
+	const {token}=useSelector((state)=>state.usersSlice)
 	const dispatch=useDispatch()
 
     const handleSetLike=async ()=>{

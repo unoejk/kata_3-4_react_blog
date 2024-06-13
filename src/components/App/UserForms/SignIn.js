@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 import {Link,useHistory} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {Spin} from 'antd'
@@ -8,7 +8,7 @@ import {signIn} from '../../../servises/fetch'
 import classNames from 'classnames'
 import style from './UserForm.module.scss'
 
-const SignIn=(props)=>{
+const SignIn=()=>{
     const dispatch=useDispatch()
     const history=useHistory()
     const [isLoading,setIsLoading]=useState(false)
@@ -19,7 +19,6 @@ const SignIn=(props)=>{
         formState:{
             errors,
         },
-        setError,
         handleSubmit,
         reset
     }=useForm()

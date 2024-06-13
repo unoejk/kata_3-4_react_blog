@@ -1,14 +1,14 @@
-import React,{useEffect,useState,useMemo} from 'react'
-import {Link,useHistory} from 'react-router-dom'
+import React,{useEffect,useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {Spin} from 'antd'
 import {useDispatch,useSelector} from 'react-redux'
 import classNames from 'classnames'
 import style from './UserForm.module.scss'
-import { updateUser, getUser, getArticle } from '../../../servises/fetch'
-import {setEmail,setToken,setUser,setUsername} from '../../../store/slices/usersSlice'
+import { updateUser} from '../../../servises/fetch'
+import {setToken,setUser} from '../../../store/slices/usersSlice'
 
-const EditProfile=(props)=>{
+const EditProfile=()=>{
 	const dispatch=useDispatch()
 	const {isUsersLoading,token,user}=useSelector((state)=>state.usersSlice)
     const history=useHistory()
@@ -22,7 +22,6 @@ const EditProfile=(props)=>{
 			}
 
 			let quickToken=JSON.parse(localStorage.getItem('token'))
-			console.log(!quickToken)
 			if(!quickToken){
 				history.push('/')
 			}

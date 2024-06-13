@@ -1,6 +1,4 @@
-import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
-
-const home='https://blog.kata.academy/api/'
+import {createSlice} from '@reduxjs/toolkit'
 
 const initialState={
     isUsersLoading:true,
@@ -26,5 +24,5 @@ const usersSlice=createSlice({
     },
 })
 
-export const {setUsersLoading,setToken,setUser,setUsername,setEmail}=usersSlice.actions
+export const {setUsersLoading,setToken,setUser}=usersSlice.actions
 export default usersSlice.reducer

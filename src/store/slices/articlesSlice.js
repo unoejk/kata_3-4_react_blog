@@ -1,9 +1,5 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
-import {useSelector} from 'react-redux'
-
 import {getArticles} from '../../servises/fetch'
-
-// const {token}=useSelector(state=>state.usersSlice)
 
 const initialState={
     isArticlesLoading:true,
@@ -25,8 +21,6 @@ export const updateArticles=createAsyncThunk(
     },
 )
 
-// export const changeFag=()=>{}
-
 const articlesSlice=createSlice({
     name:'articlesSlice',
     initialState,
@@ -44,13 +38,10 @@ const articlesSlice=createSlice({
 		},
     },
     extraReducers:(builder)=>{
-        // ---- updateArticles
-        builder.addCase(updateArticles.pending,(state,action)=>{
-            // console.log('pending')
+        builder.addCase(updateArticles.pending,(state)=>{
             state.isArticlesLoading=true
         })
         builder.addCase(updateArticles.fulfilled,(state,action)=>{
-            // console.log('fulfilled')
             state.articles=action.payload.articles
             state.articlesCount=action.payload.articlesCount
             state.isArticlesLoading=false

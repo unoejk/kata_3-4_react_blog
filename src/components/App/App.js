@@ -1,12 +1,12 @@
 // react
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 // router
-import {BrowserRouter as Router,Route,Link,withRouter,Redirect,Switch} from 'react-router-dom'
+import {Route,Redirect,Switch} from 'react-router-dom'
 // stores
-import {useDispatch,useSelector,useStore} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {setUsersLoading,setToken,setUser} from '../../store/slices/usersSlice'
 // fetch
-import {getUser,signIn} from '../../servises/fetch'
+import {signIn} from '../../servises/fetch'
 // styles
 import style from './App.module.scss'
 // components
@@ -67,7 +67,7 @@ const App=()=>{
                     <Route path={'/profile/'} exact component={EditProfile}/>
                     <Route path={'/new-article/'} exact component={EditArticle}/>
                     <Route path={'/articles/:slug/edit/'} exact component={EditArticle}/>
-                    {/*<Redirect to={'/'}/>*/}
+                    <Redirect to={'/'}/>
                 </Switch>
             </main>
         </div>
