@@ -63,7 +63,7 @@ const OpenPost = () => {
 	} else {
 		return (
 			<article className={style.openPost}>
-				<div className={style.openPost__header}>
+				<header className={style.openPost__header}>
 					<div className={`${style.openPost__headerContentSide} ${style.contentSide}`}>
 						<div className={style.contentSide__header}>
 							<Link className={style.contentSide__title} to={'/articles/' + post.slug + '/'}>
@@ -130,10 +130,10 @@ const OpenPost = () => {
 							</button>
 						</div>
 					</div>
-				</div>
-				<div className={style.openPost__body}>
+				</header>
+				<section className={style.openPost__body}>
 					<ReactMarkdown>{post.body}</ReactMarkdown>
-				</div>
+				</section>
 			</article>
 		)
 	}
