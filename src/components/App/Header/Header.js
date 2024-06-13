@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {setToken} from '../../../store/slices/usersSlice'
-import {updateArticles} from '../../../store/slices/articlesSlice'
 import classNames from 'classnames'
 import style from './Header.module.scss'
 
@@ -13,11 +12,6 @@ const Header=(props)=>{
     const logOut=async ()=>{
         dispatch(setToken(''))
         localStorage.clear()
-		// await dispatch(updateArticles({
-		// 	token:null,
-		// 	offset:(actualPage-1)*5,
-		// }))
-		// console.log('Header logOut')
     }
 
     return (
@@ -46,13 +40,14 @@ const Header=(props)=>{
                     )}
                     to={'/sign-up/'}
                 >Sign Up</Link>
-                <button
+                <Link
                     className={classNames(
                         style.header__btn,
                         style['header__btn--greenBorder'],
                         {'disabled':!token}
                     )}
-                >Create article</button>
+					to={'/new-article/'}
+                >Create article</Link>
                 <Link
                     className={classNames(
                         style.header__btn,

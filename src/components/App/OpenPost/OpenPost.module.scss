@@ -4,6 +4,13 @@
     margin: auto;
 }
 
+.errorMessage{
+    margin: auto;
+    color: $red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .openPost{
     flex-grow: 1;
 
@@ -42,7 +49,8 @@
     }
 
     &__headerUserSide{
-        width: 20%;
+        min-width: 20%;
+        max-width: 40%;
         flex-shrink: 0;
     }
 }
@@ -61,6 +69,16 @@
         font-size: 18px;
         color: $blue;
         overflow-wrap: anywhere;
+
+        transition: $transitionQuick;
+
+        &:hover{
+            color: $black;
+        }
+
+        &:focus{
+            text-decoration: underline;
+        }
     }
 
     &__likesCount{
@@ -77,6 +95,16 @@
         }
         &--isLiked:before{
             content: url('../../../assets/svg/likeActive.svg');
+        }
+
+        transition: $transitionQuick;
+
+        &:hover{
+            color: $blue;
+        }
+
+        &:focus{
+            text-decoration: underline;
         }
     }
 
@@ -104,8 +132,14 @@
 
 .userSide{
     display: flex;
-    justify-content: end;
-    gap: 8px;
+    flex-direction: column;
+    gap: 16px;
+
+    &__row{
+        display: flex;
+        justify-content: end;
+        gap: 8px;
+    }
 
     &__column{
         display: flex;
@@ -128,5 +162,41 @@
         width: 46px;
         height: 46px;
         border-radius: 50%;
+    }
+
+    &__btnWrap{}
+
+    &__controlBtn{
+        font-size: 16px;
+        border: 2px solid;
+        border-radius: 4px;
+        white-space: nowrap;
+
+        padding: 8px 20px;
+
+        transition: $transitionQuick;
+
+        &:hover{
+            background-color: $greySoft;
+        }
+
+        &:focus{
+            color: $black;
+        }
+
+        &--red{
+            color: $red;
+        }
+        &--green{
+            color: $green;
+        }
+    }
+
+    &__spin{}
+
+    &__errorMessage{
+        color: $red;
+        font-size: 20px;
+        font-weight: bold;
     }
 }

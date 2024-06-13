@@ -7,6 +7,7 @@ import {getArticles} from '../../servises/fetch'
 
 const initialState={
     isArticlesLoading:true,
+	isArticlesError:false,
     articles:[],
     articlesCount:0,
     actualPage:1,
@@ -55,7 +56,7 @@ const articlesSlice=createSlice({
             state.isArticlesLoading=false
         })
         builder.addCase(updateArticles.rejected,(state,action)=>{
-            throw new Error(action.error.message)
+			state.isArticlesError=action.error.message
         })
     },
 })

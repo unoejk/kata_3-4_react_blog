@@ -166,4 +166,13 @@
     &__spin{
         margin-top: 20px;
     }
+
+    &__errorMessage{
+        align-self: center;
+        margin-top: 8px;
+
+        color: $red;
+        font-size: 20px;
+        font-weight: bold;
+    }
 }

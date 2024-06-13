@@ -11,7 +11,8 @@ import style from './UserForm.module.scss'
 const SignUp=(props)=>{
     const dispatch=useDispatch()
     const history=useHistory()
-    const [isLoading,setLoading]=useState(false)
+    const [isLoading,setIsLoading]=useState(false)
+    const [isError,setIsError]=useState(false)
 
     const {
         register,
@@ -24,19 +25,23 @@ const SignUp=(props)=>{
     }=useForm()
 
     const onSubmit=async (data)=>{
-        setLoading(true)
-        const res=await signUp({
+        setIsLoading(true)
+        await signUp({
             user:{
                 username: data.username,
                 email: data.email,
                 password: data.password,
             },
-        })
-        dispatch(setToken(res.newToken))
-        dispatch(setUser(res.newUser))
-        reset()
-        setLoading(false)
-        await history.push('/')
+        }).then(res=>{
+			dispatch(setToken(res.newToken))
+			dispatch(setUser(res.newUser))
+			reset()
+			setIsLoading(false)
+			history.push('/')
+		}).catch(e=>{
+			setIsError(e.message)
+			setIsLoading(false)
+		})
     }
 
     return (
@@ -183,6 +188,10 @@ const SignUp=(props)=>{
                 style.userForm__spin,
                 {'disabled':!isLoading}
             )} size="large"/>
+			<p className={classNames(
+				style.userForm__errorMessage,
+				{'disabled':!isError}
+			)}>{isError}</p>
         </form>
     )
 }

@@ -4,7 +4,6 @@ import React,{useState,useEffect} from 'react'
 import {BrowserRouter as Router,Route,Link,withRouter,Redirect,Switch} from 'react-router-dom'
 // stores
 import {useDispatch,useSelector,useStore} from 'react-redux'
-import {updateArticles} from '../../store/slices/articlesSlice'
 import {setUsersLoading,setToken,setUser} from '../../store/slices/usersSlice'
 // fetch
 import {getUser,signIn} from '../../servises/fetch'
@@ -17,6 +16,7 @@ import OpenPost from './OpenPost/OpenPost'
 import SignIn from './UserForms/SignIn'
 import SignUp from './UserForms/SignUp'
 import EditProfile from './UserForms/EditProfile'
+import EditArticle from './EditArticle/EditArticle'
 
 const App=()=>{
     const dispatch=useDispatch()
@@ -52,9 +52,6 @@ const App=()=>{
         })()
     },[])
 
-    // const update=()=>dispatch(updateArticles())
-    // const show=useSelector((state)=>state.articlesSlice.articles)
-
     return (
         <div className={style.app}>
             <header className={style.app__header}>
@@ -68,6 +65,8 @@ const App=()=>{
                     <Route path={'/sign-in/'} exact component={SignIn}/>
                     <Route path={'/sign-up/'} exact component={SignUp}/>
                     <Route path={'/profile/'} exact component={EditProfile}/>
+                    <Route path={'/new-article/'} exact component={EditArticle}/>
+                    <Route path={'/articles/:slug/edit/'} exact component={EditArticle}/>
                     {/*<Redirect to={'/'}/>*/}
                 </Switch>
             </main>

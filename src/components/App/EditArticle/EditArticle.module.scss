@@ -1,0 +1,153 @@
+@import 'src/styles/standart';
+
+.spin{
+    margin: auto;
+}
+
+.editForm{
+    margin: auto;
+
+    width: 100%;
+    background-color: $white;
+    box-shadow: 0 4px 12px 0 #00000026;
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 48px 32px;
+
+    &__header{
+        align-self: center;
+        margin-bottom: 8px;
+
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &__textLabel{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__textInput{
+        font-size: 16px;
+        border: 2px solid $greyMiddle;
+        border-radius: 4px;
+
+        padding: 8px;
+
+        transition: $transitionQuick;
+
+        &::placeholder {
+            color: $greyMiddle;
+        }
+
+        &:hover{
+            background-color: $greySoft;
+        }
+
+        &:focus{
+            border-color: $blue;
+        }
+
+        &--danger{
+            border-color: $red;
+        }
+
+        &--short{
+            width: 300px;
+        }
+    }
+
+    &__textArea{
+        height: 170px;
+    }
+
+    &__textDescription{
+        font-size: 14px;
+
+        transition: $transitionQuick;
+
+        &--danger{
+            color: $red;
+        }
+    }
+
+    &__controlPanel{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__controlRow{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    &__controlBtn{
+        font-size: 16px;
+        border: 2px solid;
+        border-radius: 4px;
+
+        padding: 8px 20px;
+
+        transition: $transitionQuick;
+
+        &:hover{
+            background-color: $greySoft;
+        }
+
+        &:focus{
+            color: $black;
+        }
+
+        &--red{
+            color: $red;
+        }
+        &--blue{
+            color: $blue;
+            display: none;
+        }
+    }
+
+    &__controlRow:last-child &__controlBtn--blue{
+        display: block;
+    }
+
+    &__submitRow{
+        display: flex;
+        align-items: center;
+        gap: 44px;
+    }
+
+    &__submitBtn{
+        width: 300px;
+        height: 40px;
+        background-color: $blue;
+        color: $white;
+        font-size: 20px;
+        border-radius: 4px;
+        border: $blue solid 2px;
+
+        transition: $transitionQuick;
+
+        &:hover{
+            color: $black;
+        }
+
+        &:focus{
+            border-color: $black;
+        }
+    }
+
+    &__spin{}
+
+    &__errorMessage{
+        color: $red;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}

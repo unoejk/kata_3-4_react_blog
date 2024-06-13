@@ -39,6 +39,16 @@
         font-size: 18px;
         color: $blue;
         overflow-wrap: anywhere;
+
+        transition: $transitionQuick;
+
+        &:hover{
+            color: $black;
+        }
+
+        &:focus{
+            text-decoration: underline;
+        }
     }
 
     &__likesCount{
@@ -55,6 +65,16 @@
         }
         &--isLiked:before{
             content: url('../../../../assets/svg/likeActive.svg');
+        }
+
+        transition: $transitionQuick;
+
+        &:hover{
+            color: $blue;
+        }
+
+        &:focus{
+            text-decoration: underline;
         }
     }
 
