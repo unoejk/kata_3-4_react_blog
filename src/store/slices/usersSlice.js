@@ -4,8 +4,6 @@ const initialState = {
 	isUsersLoading: true,
 	token: '',
 	user: {},
-	username: '',
-	email: '',
 }
 
 const usersSlice = createSlice({

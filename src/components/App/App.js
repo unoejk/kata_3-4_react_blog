@@ -3,10 +3,10 @@ import React, { useEffect } from 'react'
 // router
 import { Route, Redirect, Switch } from 'react-router-dom'
 // stores
-import { useDispatch } from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import { setUsersLoading, setToken, setUser } from '../../store/slices/usersSlice'
 // fetch
-import { signIn } from '../../servises/fetch'
+import { getUser, signIn } from '../../servises/fetch'
 // styles
 import style from './App.module.scss'
 // components
@@ -16,26 +16,21 @@ import OpenPost from './OpenPost/OpenPost'
 import SignIn from './UserForms/SignIn'
 import SignUp from './UserForms/SignUp'
 import EditProfile from './UserForms/EditProfile'
-import EditArticle from './EditArticle/EditArticle'
+import CreateArticle from './ArticleForms/CreateArticle'
+import EditArticle from './ArticleForms/EditArticle'
 
 const App = () => {
 	const dispatch = useDispatch()
+    const { isUsersLoading, token } = useSelector((state) => state.usersSlice)
 
 	const tryAutoLogin = async () => {
 		try {
-			// быстро ставим данные в store из localStorage
-			let oldToken = JSON.parse(localStorage.getItem('token'))
-			let oldUser = JSON.parse(localStorage.getItem('user'))
-			dispatch(setToken(oldToken))
-			dispatch(setUser(oldUser))
-
-			// обновляем данные в store через повторный signIn
-			const res = await signIn({
-				user: {
-					email: JSON.parse(localStorage.getItem('user')).email,
-					password: JSON.parse(localStorage.getItem('user')).password,
-				},
-			})
+            const oldToken=JSON.parse(localStorage.getItem('token'))
+            if(!oldToken){
+                localStorage.clear()
+                return
+            }
+			const res = await getUser(oldToken)
 			dispatch(setToken(res.newToken))
 			dispatch(setUser(res.newUser))
 		} catch {
@@ -45,12 +40,19 @@ const App = () => {
 
 	useEffect(() => {
 		;(async () => {
-			// console.log('App useEffect')
 			dispatch(setUsersLoading(true))
 			await tryAutoLogin()
 			dispatch(setUsersLoading(false))
 		})()
 	}, [])
+
+    const PrivateRoute=(props)=>{
+        if(token || isUsersLoading){
+            return <Route {...props} />
+        }else{
+            return <Redirect to={'/sign-in/'} />
+        }
+    }
 
 	return (
 		<div className={style.app}>
@@ -64,10 +66,10 @@ const App = () => {
 					<Route path={'/articles/:slug/'} exact component={OpenPost} />
 					<Route path={'/sign-in/'} exact component={SignIn} />
 					<Route path={'/sign-up/'} exact component={SignUp} />
-					<Route path={'/profile/'} exact component={EditProfile} />
-					<Route path={'/new-article/'} exact component={EditArticle} />
-					<Route path={'/articles/:slug/edit/'} exact component={EditArticle} />
-					<Redirect to={'/'} />
+					<PrivateRoute path={'/profile/'} exact component={EditProfile} />
+					<PrivateRoute path={'/new-article/'} exact component={CreateArticle} />
+					<PrivateRoute path={'/articles/:slug/edit/'} exact component={EditArticle} />
+					{/*<Redirect to={'/'} />*/}
 				</Switch>
 			</main>
 		</div>

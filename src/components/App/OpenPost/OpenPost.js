@@ -28,11 +28,7 @@ const OpenPost = () => {
 				.reverse()
 				.find((val) => val !== '')
 
-			let quickToken = token
-			if (!quickToken) {
-				quickToken = JSON.parse(localStorage.getItem('token'))
-			}
-			const res = await getArticle(slug, quickToken)
+			const res = await getArticle(slug, token)
 
 			setPost(res.article)
 			await setIsLoading(false)

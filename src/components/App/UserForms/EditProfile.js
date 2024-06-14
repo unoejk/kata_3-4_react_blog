@@ -10,23 +10,10 @@ import style from './UserForm.module.scss'
 
 const EditProfile = () => {
 	const dispatch = useDispatch()
-	const { isUsersLoading, token, user } = useSelector((state) => state.usersSlice)
+	const { token, user } = useSelector((state) => state.usersSlice)
 	const history = useHistory()
 	const [isLoading, setIsLoading] = useState(false)
 	const [isError, setIsError] = useState(false)
-
-	useEffect(() => {
-		;(async () => {
-			if (!isUsersLoading && !token) {
-				history.push('/')
-			}
-
-			let quickToken = JSON.parse(localStorage.getItem('token'))
-			if (!quickToken) {
-				history.push('/')
-			}
-		})()
-	}, [token])
 
 	const {
 		register,

@@ -44,7 +44,6 @@ export const deleteArticle = async (slug, token) => {
 }
 
 export const updateArticle = async (slug, token, article) => {
-	console.log(slug)
 	return fetch(home + 'articles/' + slug, {
 		method: 'PUT',
 		headers: {
@@ -60,22 +59,28 @@ export const updateArticle = async (slug, token, article) => {
 
 // ---- forUsers
 
-const mutateRes = async (res, userData) => {
+const mutateRes = async (res) => {
 	if (res.ok) {
 		const resJson = await res.json()
 		const newToken = resJson.user.token
+        localStorage.setItem('token', JSON.stringify(resJson.user.token))
 		const newUser = {
 			username: resJson.user.username,
 			email: resJson.user.email,
-			password: userData.user.password,
 			image: resJson.user.image,
 		}
-		localStorage.setItem('token', JSON.stringify(newToken))
-		localStorage.setItem('user', JSON.stringify(newUser))
 		return { newToken, newUser }
 	} else {
 		throw new Error('Server Error ' + res.status)
 	}
+}
+
+export const getUser = async (token) => {
+    return fetch(home + 'user/', {
+        headers: {
+            Authorization: 'Token ' + token,
+        },
+    }).then((res) => mutateRes(res))
 }
 
 export const signUp = async (userData) => {
@@ -95,7 +100,7 @@ export const signIn = async (userData) => {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(userData),
-	}).then((res) => mutateRes(res, userData))
+	}).then((res) => mutateRes(res))
 }
 
 export const updateUser = async (token, userData) => {
@@ -106,7 +111,7 @@ export const updateUser = async (token, userData) => {
 			Authorization: 'Token ' + token,
 		},
 		body: JSON.stringify(userData),
-	}).then((res) => mutateRes(res, userData))
+	}).then((res) => mutateRes(res))
 }
 
 export const setLike = async (token, slug, itWasLiked) => {

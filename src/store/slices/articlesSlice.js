@@ -12,8 +12,7 @@ const initialState = {
 }
 
 export const updateArticles = createAsyncThunk('articles/updateArticles', async (props) => {
-	// console.log('updateArticles')
-	const token = props.token || JSON.parse(localStorage.getItem('token'))
+	const token = props.token
 	const offset = props.offset ? props.offset : 0
 	return await getArticles(token, initialState.perPage, offset)
 })
