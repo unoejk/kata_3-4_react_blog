@@ -3,10 +3,10 @@ import React, { useEffect } from 'react'
 // router
 import { Route, Redirect, Switch } from 'react-router-dom'
 // stores
-import {useDispatch,useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setUsersLoading, setToken, setUser } from '../../store/slices/usersSlice'
 // fetch
-import { getUser, signIn } from '../../servises/fetch'
+import { getUser } from '../../servises/fetch'
 // styles
 import style from './App.module.scss'
 // components
@@ -21,15 +21,15 @@ import EditArticle from './ArticleForms/EditArticle'
 
 const App = () => {
 	const dispatch = useDispatch()
-    const { isUsersLoading, token } = useSelector((state) => state.usersSlice)
+	const { isUsersLoading, token } = useSelector((state) => state.usersSlice)
 
 	const tryAutoLogin = async () => {
 		try {
-            const oldToken=JSON.parse(localStorage.getItem('token'))
-            if(!oldToken){
-                localStorage.clear()
-                return
-            }
+			const oldToken = JSON.parse(localStorage.getItem('token'))
+			if (!oldToken) {
+				localStorage.clear()
+				return
+			}
 			const res = await getUser(oldToken)
 			dispatch(setToken(res.newToken))
 			dispatch(setUser(res.newUser))
@@ -46,13 +46,13 @@ const App = () => {
 		})()
 	}, [])
 
-    const PrivateRoute=(props)=>{
-        if(token || isUsersLoading){
-            return <Route {...props} />
-        }else{
-            return <Redirect to={'/sign-in/'} />
-        }
-    }
+	const PrivateRoute = (props) => {
+		if (token || isUsersLoading) {
+			return <Route {...props} />
+		} else {
+			return <Redirect to={'/sign-in/'} />
+		}
+	}
 
 	return (
 		<div className={style.app}>

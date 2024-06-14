@@ -63,7 +63,7 @@ const mutateRes = async (res) => {
 	if (res.ok) {
 		const resJson = await res.json()
 		const newToken = resJson.user.token
-        localStorage.setItem('token', JSON.stringify(resJson.user.token))
+		localStorage.setItem('token', JSON.stringify(resJson.user.token))
 		const newUser = {
 			username: resJson.user.username,
 			email: resJson.user.email,
@@ -76,11 +76,11 @@ const mutateRes = async (res) => {
 }
 
 export const getUser = async (token) => {
-    return fetch(home + 'user/', {
-        headers: {
-            Authorization: 'Token ' + token,
-        },
-    }).then((res) => mutateRes(res))
+	return fetch(home + 'user/', {
+		headers: {
+			Authorization: 'Token ' + token,
+		},
+	}).then((res) => mutateRes(res))
 }
 
 export const signUp = async (userData) => {
